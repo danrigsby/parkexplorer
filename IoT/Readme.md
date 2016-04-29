@@ -1,1 +1,8 @@
-Either Raspberry Pi and/or Arduino source
+## IoT Device
+Purpose:
+
+### Arduino
+Arduino
+
+### Raspberry Pi 3
+Raspberry Pi 3

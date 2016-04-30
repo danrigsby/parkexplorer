@@ -85,7 +85,7 @@ const search = React.createClass({
                       latitude: parseFloat(park.lat),
                       longitude: parseFloat(park.long)
                     }}
-                    onSelect={() => this.setState({selectedPark: park})}
+                    onSelect={() => this.setState({selectedPark: {id: index, ...park}})}
                     onDeselect={() => this.setState({selectedPark: null})}
                   />
                 );

@@ -9,6 +9,7 @@ const {
 
 class report extends React.Component {
   render() {
+    console.log(this.props.park);
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>

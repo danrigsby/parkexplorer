@@ -12,7 +12,11 @@ const MaterialIcon = require('react-native-vector-icons/MaterialIcons');
 const report = React.createClass({
   getInitialState() {
     return {
-      weather: { main: {}}
+      weather: {
+        main: {
+          temp: (Math.random() * 3) + 55
+        }
+      }
     };
   },
 
@@ -79,7 +83,7 @@ const report = React.createClass({
           <View style={{padding: 15}}>
           <Text style={styles.text}><Text style={styles.title}>Opened:</Text>{this.props.park.opened}</Text>
           <Text style={styles.text}><Text style={styles.title}>Size:</Text>{this.props.park.size}</Text>
-          <Text style={styles.text}><Text style={styles.title}>Temp:</Text>{this.state.weather.main.temp}</Text>
+          <Text style={styles.text}><Text style={styles.title}>Temp:</Text> {Math.round(this.state.weather.main.temp) + "°F"}</Text>
           </View>
         </View>
 

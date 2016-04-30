@@ -41,9 +41,6 @@ class report extends React.Component {
         <Text style={styles.welcome}>
           Make a report!
         </Text>
-        <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Save</Text>
-        </TouchableHighlight>
         <Form ref="form">
           {
             questions.map((question, key) => {
@@ -52,6 +49,9 @@ class report extends React.Component {
             })
           }
         </Form>
+        <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
+          <Text style={styles.buttonText}>Save</Text>
+        </TouchableHighlight>
       </ScrollView>
     );
   }

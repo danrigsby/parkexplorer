@@ -15,8 +15,8 @@ const search = React.createClass({
       position: {
         latitude: 39.763921,
         longitude: -86.157282,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.2421
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05
       },
       selectedPark: ''
     };
@@ -99,8 +99,8 @@ const search = React.createClass({
           {
             this.state.selectedPark
             ?
-              <TouchableHighlight onPress={this._onSelectPark}>
-                <Text>{this.state.selectedPark.name}</Text>
+              <TouchableHighlight style={styles.button} onPress={this._onSelectPark}>
+                <Text style={styles.buttonText}>{this.state.selectedPark.name}</Text>
               </TouchableHighlight>
             :
               <Text style={{flex: 1}}>Select a Park</Text>
@@ -142,6 +142,21 @@ const styles = React.StyleSheet.create({
     justifyContent: 'center',
     borderTopWidth: 1,
     borderColor: '#cccccc'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  button: {
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
   }
 });
 

@@ -58,7 +58,7 @@ const search = React.createClass({
   },
 
   _onSelectPark() {
-    RouteActions.park(this.state.selectedPark);
+    RouteActions.park({park: this.state.selectedPark});
   },
 
   onRegionChange(position) {

@@ -9,11 +9,10 @@ const {
 
 class report extends React.Component {
   render() {
-    // The park is spread as props.  Check it out: console.log(this.props)
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          "Page Formally Known as Home"
+          {this.props.park.name}
         </Text>
       </View>
     );

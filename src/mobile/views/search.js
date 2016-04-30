@@ -6,7 +6,7 @@ const {
   TouchableHighlight,
   View
 } = React;
-var MapView = require('react-native-maps');
+const MapView = require('react-native-maps');
 import {Router, Actions as RouteActions, Modal, Scene} from 'react-native-router-flux';
 
 const search = React.createClass({
@@ -18,7 +18,8 @@ const search = React.createClass({
         latitudeDelta: 0.0922,
         longitudeDelta: 0.2421
       },
-      isParkSelected: true
+      isParkSelected: true,
+      data: []
     };
   },
 
@@ -32,6 +33,17 @@ const search = React.createClass({
     }).then((response) => {
       response.json().then((json) => {
         this.setState({data: json});
+      });
+    }).catch(() => {
+      this.setState({data: [{
+        name: 'park 1',
+        lat: 39.78925,
+        long: -86.4324
+      }, {
+        name: 'park 2',
+        lat: 39.78725,
+        long: -86.4324
+      }]
       });
     });
 
@@ -74,8 +86,7 @@ const search = React.createClass({
             longitudeDelta: 0.2421
           }, (this.state.position || this.state.position))}>
           {
-            this.state.data && Array.isArray(this.state.data)
-            ? this.state.data.map((park, index) => {
+            this.state.data.map((park, index) => {
               if (park) {
                 return (
                   <MapView.Marker
@@ -89,7 +100,6 @@ const search = React.createClass({
               }
               return undefined;
             })
-            : undefined
           }
         </MapView.Animated>
         <View style={[styles.details, {height: this.state.isParkSelected ? 100 : 40}]}>

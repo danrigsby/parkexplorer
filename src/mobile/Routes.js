@@ -35,16 +35,21 @@ const ActivityIcon = () => {
   );
 };
 
+const backUp = {
+  onLeft: () => RouteActions.pop(),
+  leftTitle: 'Back'
+};
+
 // Setup the redux store mappings
 const Routes = () => {
   return (
     <Router>
       <Scene key='root' hideNavBar={true}>
         <Scene key='search' component={SearchView} hideNavBar={true} title='Parks' icon={SearchIcon} />
-        <Scene key='park' tabs={true} hideNavBar={false} style={styles.tabBar} onLeft={() => RouteActions.pop()} leftTitle='Back'>
-          <Scene key='parkHome' component={ParkHomeView} title='Park' icon={HomeIcon} onLeft={() => RouteActions.pop()} leftTitle='Back' />
-          <Scene key='parkReport' component={ParkReportView} title='Report' icon={ReportIcon} onLeft={() => RouteActions.pop()} leftTitle='Back' />
-          <Scene key='parkActivity' component={ParkActivityView} title='Activity' icon={ActivityIcon} onLeft={() => RouteActions.pop()} leftTitle='Back' />
+        <Scene key='park' tabs={true} hideNavBar={false} style={styles.tabBar} {...backUp}>
+          <Scene key='parkHome' component={ParkHomeView} title='Park' icon={HomeIcon} {...backUp} />
+          <Scene key='parkReport' component={ParkReportView} title='Report' icon={ReportIcon} {...backUp} />
+          <Scene key='parkActivity' component={ParkActivityView} title='Activity' icon={ActivityIcon} {...backUp} />
         </Scene>
       </Scene>
     </Router>

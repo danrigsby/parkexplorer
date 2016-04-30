@@ -1,4 +1,5 @@
 import React from 'react-native';
+import _ from 'lodash';
 const {
   Component,
   StyleSheet,
@@ -28,7 +29,7 @@ class report extends React.Component {
   }
 
   listenForItems(itemsRef) {
-    itemsRef.orderByChild("date").on('value', (snap) => {
+    itemsRef.orderByChild("parkId").equalTo(this.props.park.id).on('value', (snap) => {
       var items = [];
       snap.forEach((child) => {
         items.push({
@@ -37,12 +38,12 @@ class report extends React.Component {
           equipmentCondition: child.val().equipmentCondition,
           overallExperience: child.val().overallExperience,
           text: child.val().text,
-          date: child.val().date,
+          date: new Date(child.val().date).toLocaleString(),
           _key: child.key()
         });
       });
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(_.reverse(items))
       });
     });
   }

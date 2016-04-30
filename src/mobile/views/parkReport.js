@@ -19,18 +19,18 @@ import Firebase from 'firebase';
 const questions = [{
   id: "overallExperience",
   title: "How would you rate your overall experience",
-  options: ['Good', 'Bad', 'Meh']
+  options: ['Awesome!', 'Good', 'Bad', 'Meh']
 },
   {
     id: "equipmentCondition",
     title: 'How would you describe the condition of the equipment at the park?',
-    options: ['Great!', 'Fine', 'Broken and terrible']
+    options: ['Brand new and shiny!', 'Great!', 'Fine', 'Broken and terrible', 'Dangerous!']
 
   },
   {
     id: "crowd",
     title: "Was the park crowded during your visit?",
-    options: ['Packed!', 'A few people', 'I was alone']
+    options: ['Packed!', 'A little crowded', 'Desolate', 'A wasteland of despair']
   }
 ];
 

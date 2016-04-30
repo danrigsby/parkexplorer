@@ -13,12 +13,12 @@ const search = React.createClass({
   getInitialState() {
     return {
       position: {
-        latitude: 39.78825,
-        longitude: -86.4324,
+        latitude: 39.763921,
+        longitude: -86.157282,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.2421
       },
-      isParkSelected: true,
+      selectedPark: undefined,
       data: []
     };
   },
@@ -70,7 +70,7 @@ const search = React.createClass({
   },
 
   _onSelectPark() {
-    RouteActions.park();
+    RouteActions.park({park: this.state.selectedPark});
   },
 
   onRegionChange(position) {
@@ -95,19 +95,22 @@ const search = React.createClass({
                     coordinate={{
                       latitude: parseFloat(park.lat),
                       longitude: parseFloat(park.long)
-                    }} />
+                    }}
+                    onSelect={() => this.setState({selectedPark: {id: index, ...park}})}
+                    onDeselect={() => this.setState({selectedPark: null})}
+                  />
                 );
               }
               return undefined;
             })
           }
         </MapView.Animated>
-        <View style={[styles.details, {height: this.state.isParkSelected ? 100 : 40}]}>
+        <View style={[styles.details, {height: this.state.selectedPark ? 100 : 40}]}>
           {
-            this.state.isParkSelected
+            this.state.selectedPark
             ?
               <TouchableHighlight onPress={this._onSelectPark}>
-                <Text>My Park</Text>
+                <Text>{this.state.selectedPark.name}</Text>
               </TouchableHighlight>
             :
               <Text style={{flex: 1}}>Select a Park</Text>

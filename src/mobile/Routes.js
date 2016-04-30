@@ -16,7 +16,7 @@ const FontAwesomeIcon = require('react-native-vector-icons/FontAwesome');
 
 const HomeIcon = () => {
   return (
-    <MaterialIcon name='info' size={28} />
+    <MaterialIcon name='my-location' size={28} />
   );
 };
 const SearchIcon = () => {
@@ -26,12 +26,12 @@ const SearchIcon = () => {
 };
 const ReportIcon = () => {
   return (
-    <MaterialIcon name='rss-feed' size={28} />
+    <MaterialIcon name='add-alert' size={28} />
   );
 };
 const ActivityIcon = () => {
   return (
-    <MaterialIcon name='comment' size={28} />
+    <MaterialIcon name='view-list' size={28} />
   );
 };
 
@@ -46,10 +46,10 @@ const Routes = () => {
     <Router>
       <Scene key='root' hideNavBar={true}>
         <Scene key='search' component={SearchView} hideNavBar={true} title='Parks' icon={SearchIcon} />
-        <Scene key='park' tabs={true} hideNavBar={false} style={styles.tabBar} {...backUp}>
-          <Scene key='parkHome' component={ParkHomeView} title='Park' icon={HomeIcon} {...backUp} />
-          <Scene key='parkReport' component={ParkReportView} title='Report' icon={ReportIcon} {...backUp} />
-          <Scene key='parkActivity' component={ParkActivityView} title='Activity' icon={ActivityIcon} {...backUp} />
+        <Scene key='park' tabs={true} hideNavBar={false} style={styles.tabBar} onLeft={() => RouteActions.pop()} leftTitle='Back'>
+          <Scene key='parkHome' component={ParkHomeView} title='Park' icon={HomeIcon} onLeft={() => RouteActions.pop()} leftTitle='Back' />
+          <Scene key='parkReport' component={ParkReportView} title='Report' icon={ReportIcon} onLeft={() => RouteActions.pop()} leftTitle='Back' />
+          <Scene key='parkActivity' component={ParkActivityView} title='Activity' icon={ActivityIcon} onLeft={() => RouteActions.pop()} leftTitle='Back' />
         </Scene>
       </Scene>
     </Router>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: '#eeeeee',
     borderTopWidth: 1,
-    borderColor: '#cccccc'}
+    borderColor: '#111'}
 });
 
 export default Routes;

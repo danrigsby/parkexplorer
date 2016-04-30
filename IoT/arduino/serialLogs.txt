@@ -1,0 +1,92 @@
+
+
+
+BusyBox v1.19.4 (2015-10-03 14:03:26 CEST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+      ___                   ___                       ___           ___
+     /\__\      ___        /\__\          ___        /\__\         /\  \
+    /:/  /     /\  \      /::|  |        /\  \      /::|  |       /::\  \
+   /:/  /      \:\  \    /:|:|  |        \:\  \    /:|:|  |      /:/\:\  \
+  /:/  /       /::\__\  /:/|:|  |__      /::\__\  /:/|:|  |__   /:/  \:\  \
+ /:/__/     __/:/\/__/ /:/ |:| /\__\  __/:/\/__/ /:/ |:| /\__\ /:/__/ \:\__\
+ \:\  \    /\/:/  /    \/__|:|/:/  / /\/:/  /    \/__|:|/:/  / \:\  \ /:/  /
+  \:\  \   \::/__/         |:/:/  /  \::/__/         |:/:/  /   \:\  /:/  /
+   \:\  \   \:\__\         |::/  /    \:\__\         |::/  /     \:\/:/  /
+    \:\__\   \/__/         /:/  /      \/__/         /:/  /       \::/  /
+     \/__/                 \/__/                     \/__/         \/__/
+
+            _______                     ________        __
+           |       |.-----.-----.-----.|  |  |  |.----.|  |_
+           |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+           |_______||   __|_____|__|__||________||__|  |____|
+                    |__| W I R E L E S S   F R E E D O M
+
+root@arduino:/# help
+Built-in commands:
+------------------
+	. : [ [[ alias bg break cd chdir command continue echo eval exec
+	exit export false fg getopts hash help jobs kill let local printf
+	pwd read readonly return set shift source test times trap true
+	type ulimit umask unalias unset wait
+
+root@arduino:/# ls
+[1;34mbin[0m      [1;34metc[0m      [1;34mmnt[0m      [1;34mproc[0m     [1;34mroot[0m     [1;34msys[0m      [1;34musr[0m      [1;34mwww[0m
+[1;34mdev[0m      [1;34mlib[0m      [1;34moverlay[0m  [1;34mrom[0m      [1;34msbin[0m     [1;34mtmp[0m      [1;36mvar[0m
+root@arduino:/# pwd
+/
+root@arduino:/# mkdir arduino
+root@arduino:/# ls
+[1;34marduino[0m  [1;34mdev[0m      [1;34mlib[0m      [1;34moverlay[0m  [1;34mrom[0m      [1;34msbin[0m     [1;34mtmp[0m      [1;36mvar[0m
+[1;34mbin[0m      [1;34metc[0m      [1;34mmnt[0m      [1;34mproc[0m     [1;34mroot[0m     [1;34msys[0m      [1;34musr[0m      [1;34mwww[0m
+root@arduino:/# pwd
+/
+root@arduino:/# cd arduino
+root@arduino:/arduino# ls
+root@arduino:/arduino# cd ..
+root@arduino:/# ls
+[1;34marduino[0m  [1;34mdev[0m      [1;34mlib[0m      [1;34moverlay[0m  [1;34mrom[0m      [1;34msbin[0m     [1;34mtmp[0m      [1;36mvar[0m
+[1;34mbin[0m      [1;34metc[0m      [1;34mmnt[0m      [1;34mproc[0m     [1;34mroot[0m     [1;34msys[0m      [1;34musr[0m      [1;34mwww[0m
+root@arduino:/# iwconfig
+lo        no wireless extensions.
+
+eth1      no wireless extensions.
+
+wlan0     IEEE 802.11bgn  ESSID:"Launch-Guest"
+          Mode:Managed  Frequency:2.412 GHz  Access Point: 8A:15:04:F8:63:51
+          Bit Rate=6.5 Mb/s   Tx-Power=16 dBm
+          RTS thr:off   Fragment thr:off
+          Encryption key:off
+          Power Management:off
+          Link Quality=54/70  Signal level=-56 dBm
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:3  Invalid misc:6   Missed beacon:0
+
+eth0      no wireless extensions.
+
+root@arduino:/# ifconfig
+eth1      Link encap:Ethernet  HWaddr B4:21:8A:F8:22:7B
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+          Interrupt:4
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:18 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:18 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:3687 (3.6 KiB)  TX bytes:3687 (3.6 KiB)
+
+wlan0     Link encap:Ethernet  HWaddr B4:21:8A:F0:22:7B
+          inet addr:10.32.95.60  Bcast:10.255.255.255  Mask:255.0.0.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:97 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:111 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:10607 (10.3 KiB)  TX bytes:12413 (12.1 KiB)
+
+root@arduino:/#

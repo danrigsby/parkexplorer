@@ -3,10 +3,11 @@ const {
   Component,
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   View
 } = React;
 const MapView = require('react-native-maps');
+import Callout from '../components/callout';
 import {Router, Actions as RouteActions, Modal, Scene} from 'react-native-router-flux';
 
 const search = React.createClass({
@@ -70,7 +71,7 @@ const search = React.createClass({
   },
 
   _onSelectPark() {
-    RouteActions.park({park: this.state.selectedPark});
+    RouteActions.park({title: this.state.selectedPark.name, park: this.state.selectedPark});
   },
 
   onRegionChange(position) {
@@ -96,26 +97,35 @@ const search = React.createClass({
                       latitude: parseFloat(park.lat),
                       longitude: parseFloat(park.long)
                     }}
-                    onSelect={() => this.setState({selectedPark: {id: index, ...park}})}
+                    onSelect={() => {
+                      if (this.state.selectedPark && this.state.selectedPark.index === index) {
+                        this._onSelectPark();
+                      } else {
+                        this.setState({selectedPark: {id: index, ...park}});
+                      }
+                    }}
                     onDeselect={() => this.setState({selectedPark: null})}
-                  />
+                  >
+                  </MapView.Marker>
                 );
               }
               return undefined;
             })
           }
         </MapView.Animated>
-        <View style={[styles.details, {height: this.state.selectedPark ? 100 : 40}]}>
-          {
-            this.state.selectedPark
-            ?
-              <TouchableHighlight style={styles.button} onPress={this._onSelectPark}>
-                <Text style={styles.buttonText}>{this.state.selectedPark.name}</Text>
-              </TouchableHighlight>
-            :
+        {
+          this.state.selectedPark
+          ?
+            <TouchableOpacity activeOpacity={0.9} style={[styles.bottomPanel, styles.details]} onPress={this._onSelectPark}>
+              <Text style={{fontSize: 22, fontWeight: 'bold'}}>{this.state.selectedPark.name}</Text>
+              <Text><Text style={styles.title}>Opened:</Text>{this.state.selectedPark.opened}</Text>
+              <Text><Text style={styles.title}>Size:</Text>{this.state.selectedPark.size}</Text>
+            </TouchableOpacity>
+          :
+            <View style={[styles.bottomPanel]}>
               <Text style={{flex: 1}}>Select a Park</Text>
-          }
-        </View>
+            </View>
+        }
       </View>
     );
   }
@@ -141,17 +151,31 @@ const styles = React.StyleSheet.create({
     right: 0,
     bottom: 0
   },
-  details: {
+  bottomPanel: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
+    padding: 10,
     backgroundColor: 'white',
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
     borderTopWidth: 1,
-    borderColor: '#cccccc'
+    borderColor: '#cccccc',
+    height: 40
+  },
+  details: {
+    height: 100,
+    padding: 15,
+    paddingLeft: 20,
+    paddingRight: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  },
+  title: {
+    fontWeight: 'bold',
+    paddingRight: 10
   },
   buttonText: {
     fontSize: 18,

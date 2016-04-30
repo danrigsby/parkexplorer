@@ -2,11 +2,13 @@ import React from 'react-native';
 const {
   Component,
   StyleSheet,
+  TouchableHighlight,
   Text,
   TouchableOpacity,
   View
 } = React;
 const MapView = require('react-native-maps');
+import Firebase from 'firebase';
 import Callout from '../components/callout';
 import {Router, Actions as RouteActions, Modal, Scene} from 'react-native-router-flux';
 
@@ -20,7 +22,9 @@ const search = React.createClass({
         longitudeDelta: 0.05
       },
       selectedPark: undefined,
-      data: []
+      showMethLabs: false,
+      data: [],
+      methLabData: []
     };
   },
 
@@ -78,9 +82,63 @@ const search = React.createClass({
     this.state.position.setValue(position);
   },
 
+  toggleShowMethLab() {
+    if (this.state.showMethLabs) {
+      this.setState({methLabData: [], showMethLabs: !this.state.showMethLabs});
+    } else {
+      fetch('https://indypark.firebaseio.com/methlabs.json', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then((response) => {
+        response.json().then((json) => {
+          console.log(json);
+          this.setState({
+            methLabData: json,
+            showMethLabs: !this.state.showMethLabs
+          });
+        });
+      }).catch(() => {
+        this.setState({
+          methdLabData: []
+        });
+      });
+    }
+  },
+
+  methLabToggleButton() {
+    return (
+      <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.toggleShowMethLab}>
+        <Text style={styles.buttonText}>{this.state.showMethLabs ? 'Hide' : 'Show'}{' Meth Labs'}</Text>
+      </TouchableHighlight>
+    );
+  },
+
+  renderMethLabs() {
+    return this.state.methLabData.map((lab, index) => {
+      if (!lab) { return undefined;}
+      return (<MapView.Marker
+        pinColor={'blue'}
+        key={index}
+        title={"Meth Lab!"}
+        coordinate={{
+                      latitude: lab.lat,
+                      longitude:lab.long
+                    }}
+      >
+      </MapView.Marker>)
+      }
+    );
+  },
+
   render() {
     return (
       <View style={styles.container}>
+        <View style={[styles.topPanel]}>
+          {this.methLabToggleButton()}
+        </View>
         <MapView.Animated style={[styles.map]} zoomEnabled={true}
           initialRegion={Object.assign({
             latitudeDelta: 0.0922,
@@ -111,7 +169,7 @@ const search = React.createClass({
               }
               return undefined;
             })
-          }
+          }{this.state.methLabData ? this.renderMethLabs() : ''}
         </MapView.Animated>
         {
           this.state.selectedPark
@@ -146,10 +204,16 @@ const styles = React.StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top: 0,
+    top: 50,
     left: 0,
     right: 0,
     bottom: 0
+  },
+  topPanel: {
+    position: 'absolute',
+    top: 5,
+    left: 0,
+    right: 0,
   },
   bottomPanel: {
     position: 'absolute',

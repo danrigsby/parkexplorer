@@ -16,7 +16,7 @@ const FontAwesomeIcon = require('react-native-vector-icons/FontAwesome');
 
 const HomeIcon = () => {
   return (
-    <MaterialIcon name='account-box' size={28} />
+    <MaterialIcon name='my-location' size={28} />
   );
 };
 const SearchIcon = () => {
@@ -26,12 +26,12 @@ const SearchIcon = () => {
 };
 const ReportIcon = () => {
   return (
-    <MaterialIcon name='announcement' size={28} />
+    <MaterialIcon name='add-alert' size={28} />
   );
 };
 const ActivityIcon = () => {
   return (
-    <MaterialIcon name='speaker-notes' size={28} />
+    <MaterialIcon name='view-list' size={28} />
   );
 };
 

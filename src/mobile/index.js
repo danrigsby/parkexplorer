@@ -37,7 +37,7 @@ const app = () => {
   const Root = () => {
     return (
       <Provider store={store}>
-          <Routes />
+        <Routes />
       </Provider>
     );
   };

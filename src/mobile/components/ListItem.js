@@ -9,9 +9,17 @@ class ListItem extends React.Component {
                     <Text style={styles.date}>
                         {this.props.item.date}
                     </Text>
-                    <Text style={styles.liText}>
-                        <Text style={styles.bold}>{this.props.item.user}</Text> said "the park was {this.props.item.crowd}. The condition of the equipment in the park is {this.props.item.equipmentCondition} and my overall experience is {this.props.item.overallExperience}"
-                    </Text>
+                    {
+                        this.props.item.text
+                        ?
+                            <Text style={styles.liText}>
+                                <Text style={styles.bold}>{this.props.item.user}</Text> found ${this.props.item.text}"
+                            </Text>
+                        :
+                            <Text style={styles.liText}>
+                                <Text style={styles.bold}>{this.props.item.user}</Text> said "the park was {this.props.item.crowd}. The condition of the equipment in the park is {this.props.item.equipmentCondition} and my overall experience is {this.props.item.overallExperience}"
+                            </Text>
+                    }
                 </View>
             </TouchableHighlight>
         );

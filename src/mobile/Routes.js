@@ -31,7 +31,7 @@ const ReportIcon = () => {
 };
 const ActivityIcon = () => {
   return (
-    <MaterialIcon name='insert-emoticon' size={28} />
+    <MaterialIcon name='speaker-notes' size={28} />
   );
 };
 

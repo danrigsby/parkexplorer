@@ -58,8 +58,7 @@ const search = React.createClass({
   },
 
   _onSelectPark() {
-    console.log('asdf');
-    RouteActions.park();
+    RouteActions.park(this.state.selectedPark);
   },
 
   onRegionChange(position) {
@@ -87,6 +86,7 @@ const search = React.createClass({
                       longitude: parseFloat(park.long)
                     }}
                     onSelect={() => this.setState({selectedPark: park})}
+                    onDeselect={() => this.setState({selectedPark: null})}
                   />
                 );
               }

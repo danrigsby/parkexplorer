@@ -1,4 +1,5 @@
 import React from 'react-native';
+import _ from 'lodash';
 const {
   Component,
   StyleSheet,
@@ -41,7 +42,7 @@ class report extends React.Component {
         });
       });
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(_.reverse(items))
       });
     });
   }

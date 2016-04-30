@@ -40,22 +40,11 @@ class report extends React.Component {
     //console.log();
     const formValues = {
       parkId: this.props.park.id,
-      date: new Date(),
+      date: new Date().toISOString(),
       ...this.refs.form.getValues()
     };
     const parkReportRef = new Firebase('https://indypark.firebaseio.com/reports');
     parkReportRef.push(formValues);
-    // fetch('https://indypark.firebaseio.com/reports.json', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   }
-    // }).then((response) => {
-    //   response.json().then((json) => {
-    //     this.setState({data: json});
-    //   });
-    // });
   };
 
   render() {

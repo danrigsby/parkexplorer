@@ -84,6 +84,7 @@ const report = React.createClass({
           <Text style={styles.text}><Text style={styles.title}>Opened:</Text>{this.props.park.opened}</Text>
           <Text style={styles.text}><Text style={styles.title}>Size:</Text>{this.props.park.size}</Text>
           <Text style={styles.text}><Text style={styles.title}>Temp:</Text> {Math.round(this.state.weather.main.temp) + "°F"}</Text>
+          <Text style={styles.text}><Text style={styles.title}>Conditions:</Text> Rainy</Text>
           </View>
         </View>
 

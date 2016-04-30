@@ -11,7 +11,7 @@ class report extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
+        <Text style={styles.report}>
           Report Suspicious Activity
         </Text>
       </View>
@@ -26,7 +26,7 @@ const styles = React.StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
   },
-  welcome: {
+  report: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10

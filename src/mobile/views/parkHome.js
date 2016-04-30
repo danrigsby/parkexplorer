@@ -12,7 +12,7 @@ class report extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Home
+          "Page Formally Known as Home"
         </Text>
       </View>
     );

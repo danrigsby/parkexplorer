@@ -13,7 +13,7 @@ class ListItem extends React.Component {
                         this.props.item.text
                         ?
                             <Text style={styles.liText}>
-                                <Text style={styles.bold}>{this.props.item.user}</Text> found ${this.props.item.text}"
+                                <Text style={styles.bold}>{this.props.item.user}</Text> found {this.props.item.text}
                             </Text>
                         :
                             <Text style={styles.liText}>

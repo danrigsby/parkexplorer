@@ -16,6 +16,12 @@ const {
 import Form from 'react-native-form';
 import Firebase from 'firebase';
 
+const users = [
+  'Chris', 'Dan', 'Nick', 'Shiva',
+  'Ivan', 'Jami', 'Serena', 'Mona', 'Lisa',
+  'Jennifer', 'Time', 'Alex', 'Susan', 'Jill', 'Jack'
+];
+
 const questions = [{
   id: "overallExperience",
   title: "How would you rate your overall experience",
@@ -35,19 +41,26 @@ const questions = [{
 ];
 
 class report extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {submitted: false}
+  }
+
   submitForm = () => {
     //let formValues = Object.assign(, {parkId: this.props.park.id});
     //console.log();
     const formValues = {
       parkId: this.props.park.id,
       date: new Date().toISOString(),
+      user: users[Math.floor(Math.random()*users.length)],
       ...this.refs.form.getValues()
     };
     const parkReportRef = new Firebase('https://indypark.firebaseio.com/reports');
     parkReportRef.push(formValues);
+    this.setState({submitted: true});
   };
 
-  render() {
+  renderForm() {
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.welcome}>
@@ -66,6 +79,16 @@ class report extends React.Component {
         </TouchableHighlight>
       </ScrollView>
     );
+  }
+
+  renderThanks() {
+    return (<View style={styles.container}><Text style={styles.welcome}>
+      {'Thank You!'}
+    </Text></View>);
+  }
+
+  render() {
+    return !this.state.submitted ? this.renderForm() : this.renderThanks();
   }
 }
 

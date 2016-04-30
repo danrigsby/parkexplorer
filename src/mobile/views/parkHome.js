@@ -9,9 +9,37 @@ const {
 const MapView = require('react-native-maps');
 const MaterialIcon = require('react-native-vector-icons/MaterialIcons');
 
-class report extends React.Component {
+const report = React.createClass({
+  getInitialState() {
+    return {
+      weather: { main: {}}
+    };
+  },
+
+  componentDidMount() {
+    this.fetchWeather(this.props.park.lat, this.props.park.long);
+  },
+
+  fetchWeather(lat, long) {
+    console.log("fetchWeather");
+
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}`;
+
+    fetch(url, {
+      method: 'GET'
+    }).then((response) => {
+      console.log(response);
+      response.json().then((json) => {
+        this.setState({weather: json});
+      });
+    }).catch(() => {
+      console.log("Error");
+    });
+  },
+
   render() {
     console.log(this.props.park);
+    console.log(this.state.weather);
     return (
       <View style={styles.container}>
         <MapView.Animated style={[styles.map]} zoomEnabled={true}
@@ -51,13 +79,14 @@ class report extends React.Component {
           <View style={{padding: 15}}>
           <Text style={styles.text}><Text style={styles.title}>Opened:</Text>{this.props.park.opened}</Text>
           <Text style={styles.text}><Text style={styles.title}>Size:</Text>{this.props.park.size}</Text>
+          <Text style={styles.text}><Text style={styles.title}>Temp:</Text>{this.state.weather.main.temp}</Text>
           </View>
         </View>
 
       </View>
     );
   }
-}
+});
 
 const styles = React.StyleSheet.create({
   container: {

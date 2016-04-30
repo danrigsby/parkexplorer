@@ -16,7 +16,7 @@ const search = React.createClass({
         latitude: 39.78825,
         longitude: -86.4324,
         latitudeDelta: 0.0922,
-        longitudeDelta: 0.1421
+        longitudeDelta: 0.2421
       },
       isParkSelected: true
     };
@@ -78,7 +78,8 @@ const search = React.createClass({
             ? this.state.data.map((park, index) => {
               if (park) {
                 return (
-                  <MapView.Marker key={index}
+                  <MapView.Marker
+                    key={index}
                     title={park.name}
                     coordinate={{
                       latitude: parseFloat(park.lat),

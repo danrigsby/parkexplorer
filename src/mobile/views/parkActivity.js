@@ -28,7 +28,7 @@ class report extends React.Component {
   }
 
   listenForItems(itemsRef) {
-    itemsRef.orderByChild("date").on('value', (snap) => {
+    itemsRef.orderByChild("parkId").equalTo(this.props.park.id).on('value', (snap) => {
       var items = [];
       snap.forEach((child) => {
         items.push({

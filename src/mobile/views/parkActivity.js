@@ -37,6 +37,7 @@ class report extends React.Component {
           crowd: child.val().crowd,
           equipmentCondition: child.val().equipmentCondition,
           overallExperience: child.val().overallExperience,
+          text: child.val().text,
           date: new Date(child.val().date).toLocaleString(),
           text: child.val().text,
           _key: child.key()

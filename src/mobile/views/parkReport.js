@@ -11,10 +11,14 @@ const {
   Text,
   TextInput,
   TouchableHighlight,
+  TouchableOpacity,
   View
 } = React;
 import Form from 'react-native-form';
 import Firebase from 'firebase';
+const MaterialIcon = require('react-native-vector-icons/MaterialIcons');
+const FoundationIcon = require('react-native-vector-icons/Foundation');
+const FontAwesomeIcon = require('react-native-vector-icons/FontAwesome');
 
 const users = [
   'Chris', 'Dan', 'Nick', 'Shiva',
@@ -60,17 +64,47 @@ class report extends React.Component {
     this.setState({submitted: true});
   };
 
+  _report = (activity) => {
+    const parkReportRef = new Firebase('https://indypark.firebaseio.com/reports');
+    parkReportRef.push({
+      parkId: this.props.park.id,
+      date: new Date().toISOString(),
+      user: users[Math.floor(Math.random()*users.length)],
+      text: activity
+    });
+  };
+
   renderForm() {
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.welcome}>
           Make a report!
         </Text>
+        <View style={{flex: 1, flexDirection:'row', paddingBottom: 10, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#cccccc'}}>
+          <TouchableOpacity onPress={() => this._report('drug use')}>
+            <View style={{alignItems: 'center', width: 85, backgroundColor: '#EEEEEE', borderWidth: 1, borderColor: '#cccccc'}}>
+              <FoundationIcon style={{color: 'black'}} name='skull' size={32} />
+              <Text style={{fontSize: 16, paddingTop: 10}}>Drug Use</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this._report('mud')}>
+            <View style={{alignItems: 'center', width: 85, backgroundColor: '#EEEEEE', borderWidth: 1, borderColor: '#cccccc'}}>
+              <FontAwesomeIcon style={{color: 'black'}} name='tint' size={32} />
+              <Text style={{fontSize: 16, paddingTop: 10}}>Muddy</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this._report('Broken')}>
+            <View style={{alignItems: 'center', width: 85, backgroundColor: '#EEEEEE', borderWidth: 1, borderColor: '#cccccc'}}>
+              <MaterialIcon style={{color: 'black'}}  name='build' size={32} />
+              <Text style={{fontSize: 16, paddingTop: 10}}>Broken Equipment</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
         <Form ref="form">
           {
             questions.map((question, key) => {
               let options = question.options.map((option, key) => (<Picker.Item key={key} label={option} value={option} />));
-              return (<View key={key}><Text>{question.title}</Text><Picker type="Picker" name={question.id} selectedValue={question.options[0]}>{options}</Picker></View>)
+              return (<View key={key}><Text style={{fontSize: 16, fontWeight: 'bold'}}>{question.title}</Text><Picker type="Picker" name={question.id} selectedValue={question.options[0]}>{options}</Picker></View>)
             })
           }
         </Form>

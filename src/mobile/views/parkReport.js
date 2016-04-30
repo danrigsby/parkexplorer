@@ -96,7 +96,7 @@ class report extends React.Component {
           <TouchableOpacity onPress={() => this._report('Broken')}>
             <View style={{alignItems: 'center', width: 85, backgroundColor: '#EEEEEE', borderWidth: 1, borderColor: '#cccccc'}}>
               <MaterialIcon style={{color: 'black'}}  name='build' size={32} />
-              <Text style={{fontSize: 16, paddingTop: 10}}>Broken</Text>
+              <Text style={{fontSize: 16, paddingTop: 10}}>Broken Equipment</Text>
             </View>
           </TouchableOpacity>
         </View>

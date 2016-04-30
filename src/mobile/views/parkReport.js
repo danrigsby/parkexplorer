@@ -80,23 +80,23 @@ class report extends React.Component {
         <Text style={styles.welcome}>
           Make a report!
         </Text>
-        <View style={{flex: 1, flexDirection:'row', paddingBottom: 10, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#cccccc'}}>
+        <View style={{flex: 1, flexDirection:'row',marginLeft: -20,marginRight: -20, padding: 10, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor:'#2196F3'}}>
           <TouchableOpacity onPress={() => this._report('drug use')}>
-            <View style={{alignItems: 'center', width: 85, backgroundColor: '#EEEEEE', borderWidth: 1, borderColor: '#cccccc'}}>
-              <FoundationIcon style={{color: 'black'}} name='skull' size={32} />
-              <Text style={{fontSize: 16, paddingTop: 10}}>Drug Use</Text>
+            <View style={{alignItems: 'center'}}>
+              <FoundationIcon style={{color: 'white'}} name='skull' size={32} />
+              <Text style={{fontSize: 16, paddingTop: 10, color: 'white'}}>Drug Use</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this._report('mud')}>
-            <View style={{alignItems: 'center', width: 85, backgroundColor: '#EEEEEE', borderWidth: 1, borderColor: '#cccccc'}}>
-              <FontAwesomeIcon style={{color: 'black'}} name='tint' size={32} />
-              <Text style={{fontSize: 16, paddingTop: 10}}>Muddy</Text>
+            <View style={{alignItems: 'center'}}>
+              <FontAwesomeIcon style={{color: 'white'}} name='tint' size={32} />
+              <Text style={{fontSize: 16, paddingTop: 10, color: 'white'}}>Muddy</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this._report('Broken')}>
-            <View style={{alignItems: 'center', width: 85, backgroundColor: '#EEEEEE', borderWidth: 1, borderColor: '#cccccc'}}>
-              <MaterialIcon style={{color: 'black'}}  name='build' size={32} />
-              <Text style={{fontSize: 16, paddingTop: 10}}>Broken Equipment</Text>
+          <TouchableOpacity onPress={() => this._report('broken equipment')}>
+            <View style={{alignItems: 'center'}}>
+              <MaterialIcon style={{color: 'white'}}  name='build' size={32} />
+              <Text style={{fontSize: 16, paddingTop: 10, color: 'white'}}>Broken</Text>
             </View>
           </TouchableOpacity>
         </View>

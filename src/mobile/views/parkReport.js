@@ -14,16 +14,17 @@ const {
   View
 } = React;
 import Form from 'react-native-form';
+import Firebase from 'firebase';
 
 const questions = [{
   id: "overallExperience",
   title: "How would you rate your overall experience",
-  options: ['Bad', 'Meh', 'Good']
+  options: ['Good', 'Bad', 'Meh']
 },
   {
     id: "equipmentCondition",
     title: 'How would you describe the condition of the equipment at the park?',
-    options: ['Broken and terrible', 'Fine', 'Great!']
+    options: ['Great!', 'Fine', 'Broken and terrible']
 
   },
   {
@@ -31,10 +32,32 @@ const questions = [{
     title: "Was the park crowded during your visit?",
     options: ['Packed!', 'A few people', 'I was alone']
   }
-
 ];
 
 class report extends React.Component {
+  submitForm = () => {
+    //let formValues = Object.assign(, {parkId: this.props.park.id});
+    //console.log();
+    const formValues = {
+      parkId: this.props.park.id,
+      date: new Date(),
+      ...this.refs.form.getValues()
+    };
+    const parkReportRef = new Firebase('https://indypark.firebaseio.com/reports');
+    parkReportRef.push(formValues);
+    // fetch('https://indypark.firebaseio.com/reports.json', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   }
+    // }).then((response) => {
+    //   response.json().then((json) => {
+    //     this.setState({data: json});
+    //   });
+    // });
+  };
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -45,11 +68,11 @@ class report extends React.Component {
           {
             questions.map((question, key) => {
               let options = question.options.map((option, key) => (<Picker.Item key={key} label={option} value={option} />));
-              return (<View key={key}><Text>{question.title}</Text><Picker type="Picker" name={question.id} >{options}</Picker></View>)
+              return (<View key={key}><Text>{question.title}</Text><Picker type="Picker" name={question.id} selectedValue={question.options[0]}>{options}</Picker></View>)
             })
           }
         </Form>
-        <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
+        <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.submitForm}>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableHighlight>
       </ScrollView>
@@ -83,7 +106,7 @@ const styles = React.StyleSheet.create({
     borderColor: '#48BBEC',
     borderWidth: 1,
     borderRadius: 8,
-    marginBottom: 10,
+    marginBottom: 200,
     alignSelf: 'stretch',
     justifyContent: 'center'
   }

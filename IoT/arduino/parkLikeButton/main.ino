@@ -27,14 +27,14 @@ void writeLikes(int likes) {
 void breath(unsigned char color) {
     for (int i=0; i<255; i++) {
         lcd.setPWM(color, i);
-        delay(5);
+        delay(1);
     }
     delay(500);
     for (int i=254; i>=0; i--) {
         lcd.setPWM(color, i);
-        delay(5);
+        delay(1);
     }
-    delay(500);
+    delay(200);
 }
 
 void loop() {
